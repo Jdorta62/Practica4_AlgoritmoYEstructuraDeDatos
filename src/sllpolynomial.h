@@ -100,7 +100,9 @@ std::ostream& operator<<(std::ostream& os, const SllPolynomial& p) {
 // Operaciones con polinomios
 
 // FASE III
-// Evaluación de un polinomio representado por lista simple
+/**
+ * @brief método que permite evaluar un polinomio dandole un valor determinado a la x.
+ */
 double SllPolynomial::Eval(const double x) const {
   double result{0.0};
   SllPolyNode* aux = get_head();
@@ -112,7 +114,9 @@ double SllPolynomial::Eval(const double x) const {
   return result;
 }
 
-// Comparación si son iguales dos polinomios representados por listas simples
+/**
+ * @brief método que permite la comprobar si dos polinomios implementados en listas enlazadas son iguales.
+ */
 bool SllPolynomial::IsEqual(const SllPolynomial& sllpol, const double eps) const {
   bool differents = false;
   SllPolyNode* aux1 = get_head();
@@ -146,7 +150,9 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol, const double eps) const
   }
   return !differents;
 } 
-// FASE IV: Generar nuevo polinomio suma del polinomio invocante mas otro polinomio
+/**
+ * @brief método que permite la suma de 2 listas con polinomios.
+ */
 void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, const double eps) {
   SllPolyNode* aux1 = get_head();
   SllPolyNode* aux2 = sllpol.get_head();
