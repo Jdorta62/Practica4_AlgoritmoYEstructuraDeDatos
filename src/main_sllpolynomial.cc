@@ -1,22 +1,23 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
-// VERSION: 1.0
-// ASIGNATURA: Algoritmos y Estructuras de Datos
-// PRÁCTICA Nº: 4
-// ESTILO: Google C++ Style Guide
-// COMENTARIOS: 
-// COMPILACIÓN: g++ -g main_sllpolynomial.cc -o main_sllpolynomial
-// EJECUCIÓN: ./main_sllpolynomial < data_sllpolynomial.txt
-
+/**
+  * Universidad de La Laguna
+  * Escuela Superior de Ingeniería y Tecnología
+  * Grado en Ingeniería Informática
+  * Informática Básica
+  *
+  * @file main_sllpolynomial
+  * @author Jose Dorta Luis alu0101414676@ull.edu.es
+  * @date 11 april 2021
+  * @brief programa proporcionado por el profesorado para realizar la práctica 4 de Algoritmos y estructura de datos
+  * @bug ningún bug conocido
+  * 
+  */
 #include <iostream>
 
 #include "sllpolynomial.h"
 
 using namespace std;
 
-int main()
-{
+int main() {
   vector_t<double> v1, v2, v3;
   cin >> v1 >> v2 >> v3;
   cout << "v1= " << v1;

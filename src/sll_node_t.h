@@ -1,12 +1,16 @@
-// AUTOR: 
-// FECHA: 
-// EMAIL: 
-// VERSION: 3.0
-// ASIGNATURA: Algoritmos y Estructuras de Datos
-// PRÁCTICA Nº: 4
-// ESTILO: Google C++ Style Guide
-// COMENTARIOS: 
-
+/**
+  * Universidad de La Laguna
+  * Escuela Superior de Ingeniería y Tecnología
+  * Grado en Ingeniería Informática
+  * Informática Básica
+  *
+  * @file sll_node_t.h
+  * @author Jose Dorta Luis alu0101414676@ull.edu.es
+  * @date 11 april 2021
+  * @brief programa proporcionado por el profesorado para realizar la práctica 4 de Algoritmos y estructura de datos
+  * @bug ningún bug conocido
+  * 
+  */
 #ifndef SLL_NODET_H_
 #define SLL_NODET_H_
 
@@ -38,7 +42,9 @@ template <class T> class sll_node_t {
 };
 
 
-// E/S
+/**
+ * @brief permite insertar nodos de la clase sll_node_t en el flujo
+ */
 template <class T> std::ostream& sll_node_t<T>::write(std::ostream& os) const  {
   os << data_;
   return os;
