@@ -152,8 +152,17 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol, const double eps) const
 } 
 /**
  * @brief método que permite la suma de 2 listas con polinomios.
+ * @param sllpol 2do sumando (el primero es el que invoca el método).
+ * @param sllpolsum objeto de la clase SllPolynomial que va almacenar el resultado de la suma.
  */
 void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, const double eps) {
+
+/** 
+ * Bloque #1
+ * Se declaran nodos auxiliares, y enteros sin signo. Los nodos auxiliares recorrerán la lista
+ * y las variables enteras contabilizarán el tamaño de la lista.
+ */
+ 
   SllPolyNode* aux1 = get_head();
   SllPolyNode* aux2 = sllpol.get_head();
   unsigned int size_list1{1};
@@ -169,6 +178,11 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
     aux2 = aux2->get_next();
   }
   
+/** 
+ * Bloque #2
+ * Se declaran 3 vectores que almacenaran el contenido de las listas 1, 2 y resultante respectivamente.
+ * Con los contadores del bloque 1, se determinan el tamaño de los vectores.
+ */
   vector_t<pair_double_t> vector1;
   vector_t<pair_double_t> vector2;
   vector_t<double> vector_result;
@@ -180,7 +194,11 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
     vector1.resize(size_list1);
     vector2.resize(size_list1); 
   }
-
+  
+/**
+ * Bloque #3
+ * En este bloque se pasan los pares de la lista a los vectores.
+ */
   int index{0};
   aux1 = get_head();
   aux2 = sllpol.get_head();
@@ -198,12 +216,21 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
     ++index;
   }
   
+/**
+ * Bloque #4
+ * En este bloque se da el tamaño al vector que almacenará el resultado de la suma. El tamaño del vector
+ * viene dado por el mayor grado del polinomio
+ */
   pair_double_t temp_pair(vector1[index -1]);
   pair_double_t temp_pair2(vector2[index-1]);
   int size1 = temp_pair.get_inx()+1;
   int size2 = temp_pair2.get_inx()+1;
   size1 < size2 ? vector_result.resize(size2) : vector_result.resize(size1);
-
+  
+/**
+ * Bloque #5
+ * En este bucle se suman los coeficientes de los polinomio (pair_result.get_val()) y se almacenan en el vector resultante.
+ */
   for (unsigned int i{0}; i < vector_result.get_size(); ++i) {
     pair_double_t pair_result (vector_result[i],i);
     for (unsigned int j{0}; j < vector1.get_size(); ++j)  { 
@@ -218,7 +245,12 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
     }
     vector_result[i] = pair_result.get_val();
   }
-
+  
+/**
+ * Bloque #6
+ * Aquí se construye la lista a apartir del vector que contiene los coeficientes. El grado viene dado por la posición que
+ * ocupa dentro del vector.
+ */
   SllPolyNode* node;
   for (int i = vector_result.get_size(); i > 0; --i) {
     int real_pos = i-1;
