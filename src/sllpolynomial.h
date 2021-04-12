@@ -44,6 +44,7 @@ class SllPolynomial : public sll_t<pair_double_t> {
   double Eval(const double) const;
   bool IsEqual(const SllPolynomial&, const double = EPS) const;
   void Sum(const SllPolynomial&, SllPolynomial&, const double = EPS);
+  void Scalar(SllPolynomial&, const double scalar);
 };
 
 
@@ -121,8 +122,8 @@ bool SllPolynomial::IsEqual(const SllPolynomial& sllpol, const double eps) const
   bool differents = false;
   SllPolyNode* aux1 = get_head();
   SllPolyNode* aux2 = sllpol.get_head();
-  unsigned int size_list1{1};
-  unsigned int size_list2{1};
+  unsigned int size_list1{0};
+  unsigned int size_list2{0};
   while (aux1 != NULL) {
     ++size_list1;
     aux1 = aux1->get_next();
@@ -245,7 +246,7 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
     }
     vector_result[i] = pair_result.get_val();
   }
-  
+ 
 /**
  * Bloque #6
  * Aquí se construye la lista a apartir del vector que contiene los coeficientes. El grado viene dado por la posición que
@@ -264,5 +265,31 @@ void SllPolynomial::Sum(const SllPolynomial& sllpol, SllPolynomial& sllpolsum, c
 
 }
 
+/**
+ * @brief modicfiación
+ */
+void SllPolynomial::Scalar(SllPolynomial& sllpscalar, const double scalar) {
+  SllPolyNode* aux = get_head();
+  SllPolyNode* node;
+  SllPolyNode* node_temp;
+  bool primero = true;
+  while (aux != NULL) {
+      pair_double_t temp_pair{aux->get_data()};
+      double coeficiente = temp_pair.get_val();
+      coeficiente = scalar * coeficiente;
+      int indice = temp_pair.get_inx();
+      temp_pair.set(coeficiente,indice);
+      node = new SllPolyNode;
+      node->set_data(temp_pair);
+      if (primero == true ) {
+        sllpscalar.push_front(node);
+        primero = false;
+      } else {
+        sllpscalar.insert_after(node_temp, node);
+      }
+      node_temp = node;
+      aux = aux->get_next();
+    }
+}
 
 #endif  // SLLPOLYNOMIAL_H_

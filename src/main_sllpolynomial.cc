@@ -73,5 +73,11 @@ int main() {
   sllp2.Sum(sllp3, sllpsum23);
   cout << "sllp2 + sllp3= " << sllpsum23;
 
+  cout << "Modificación: " << std::endl;
+  SllPolynomial sllpscalar;
+  double scalar = 1;
+  sllp1.Scalar(sllpscalar,scalar);
+  std::cout << "Polinomio Escalar: " << sllpscalar << std::endl;
+
   return 0;
 }
